@@ -40,6 +40,8 @@ class App extends Component {
             <span> </span>
 
             <button onClick={this.hideCountries.bind(this)}>Slot</button>
+
+            <hr />
           </div>
 
           {this.state.showCountries ? <Countries /> : <Slot />}
