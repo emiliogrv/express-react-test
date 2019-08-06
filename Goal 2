@@ -1,0 +1,1 @@
+SELECT `players`.`id`, `players`.`name` FROM `players` JOIN `game_player` ON `game_player`.`player_id` = `players`.`id` JOIN `games` ON `game_player`.`game_id` = `games`.`id` WHERE `game_player`.`favorite` = 1 AND `games`.`name_slug` = 'slot' GROUP BY `players`.`id`
