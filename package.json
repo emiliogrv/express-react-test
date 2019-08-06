@@ -2,6 +2,7 @@
   "name": "back",
   "version": "0.0.0",
   "private": true,
+  "main": "dist/bin/www",
   "scripts": {
     "start": "npm run prod",
     "server": "babel-node ./src/bin/www",
