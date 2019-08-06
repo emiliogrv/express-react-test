@@ -1,12 +1,26 @@
 # Back
 
+## Demo:
+
+https://node-test-emiliogrv.herokuapp.com/
+
+## General Objetives
+
+- Get request with Node and Express
+- Simple validations requests
+- Simple handler errors
+
 ## Goal 1:
 
 Write a function that connects to​ ​ https://restcountries.eu/​ and gets a unique country from a specific name given using the Node back end and send it to the front end.
 
+- https://node-test-emiliogrv.herokuapp.com/api/v1/countries/venezuela
+
 ## Goal 2:
 
 Using the same API https://restcountries.eu/​, and from an array of string, write a function that returns a list of countries where their name matches at least a part of one of these string use the Node back end and send it to the front end.
+
+- https://node-test-emiliogrv.herokuapp.com/api/v1/countries?names[]=venezuela&names[]=united
 
 ## Goal 3:
 
@@ -29,6 +43,8 @@ The user start with 20 coins, when the user run the function the user will lose 
 - 3 lemons in a row: won 3 coins
 
 Using these data, create a function that, when it’s called by the front end, gives back the result of a spin and show the result.
+
+- https://node-test-emiliogrv.herokuapp.com/api/v1/slot-machine?currentCoins=10
 
 ---
 
