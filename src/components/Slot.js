@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { Button } from 'react-bootstrap'
 
 import API from '../utils/API'
+
+import loading from './partials/loading'
 
 class Countries extends Component {
   constructor() {
@@ -8,13 +11,16 @@ class Countries extends Component {
 
     this.state = {
       currentCoins: 10,
+      initialized: false,
+      loading: false,
       prize: 0,
-      result: null,
-      initialized: false
+      result: null
     }
   }
 
-  async onSpinHandler() {
+  async spinHandler() {
+    this.setState({ loading: true })
+
     const {
       data: { currentCoins, prize, result }
     } = await API.get(
@@ -24,7 +30,13 @@ class Countries extends Component {
       }
     )
 
-    this.setState({ currentCoins, prize, result, initialized: true })
+    this.setState({
+      currentCoins,
+      initialized: true,
+      loading: false,
+      prize,
+      result
+    })
   }
 
   render() {
@@ -41,13 +53,17 @@ class Countries extends Component {
 
     return (
       <div>
-        <button onClick={this.onSpinHandler.bind(this)}>Spin</button>
+        <Button variant="info" onClick={this.spinHandler.bind(this)}>
+          Spin
+        </Button>
 
         <h1>You have {this.state.currentCoins} coins</h1>
 
         {this.state.currentCoins ? null : <h1>:(</h1>}
 
         {this.state.initialized ? container : null}
+
+        {loading(this.state.loading)}
       </div>
     )
   }

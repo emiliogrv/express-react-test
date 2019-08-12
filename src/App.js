@@ -1,52 +1,44 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+
 import logo from './logo.svg'
 import './App.css'
-
-import Countries from './components/Countries'
-import Slot from './components/Slot'
+import routes from './routes'
 
 class App extends Component {
-  constructor() {
-    super()
-
-    this.state = {
-      showCountries: true
-    }
-  }
-
-  hideCountries() {
-    this.setState({
-      showCountries: false
-    })
-  }
-
-  showCountries() {
-    this.setState({
-      showCountries: true
-    })
-  }
-
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <Link to="/">
+              <img src={logo} className="App-logo" alt="logo" />
+            </Link>
 
-          <span>Show:</span>
+            <span>Show:</span>
 
-          <div>
-            <button onClick={this.showCountries.bind(this)}>Countries</button>
+            <div className="mb-2">
+              <Link className="btn btn-info" to="/countries/">
+                Countries
+              </Link>{' '}
+              <Link className="btn btn-info" to="/slot/">
+                Slot
+              </Link>
+            </div>
 
-            <span> </span>
-
-            <button onClick={this.hideCountries.bind(this)}>Slot</button>
-
-            <hr />
-          </div>
-
-          {this.state.showCountries ? <Countries /> : <Slot />}
-        </header>
-      </div>
+            <Switch>
+              {routes.map((route, i) => (
+                <Route
+                  exact={route.exact}
+                  path={route.path}
+                  render={props => <route.component {...props} />}
+                  key={i}
+                />
+              ))}
+            </Switch>
+          </header>
+        </div>
+      </Router>
     )
   }
 }
